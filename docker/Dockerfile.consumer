@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN mkdir -p /app/data/exports
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY data/     data/
+COPY consumer/ consumer/
+
+CMD ["python", "consumer/train_consumer.py"]
